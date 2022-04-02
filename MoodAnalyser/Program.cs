@@ -1,15 +1,28 @@
 ﻿using System;
 namespace MoodAnalyserSpace
 {
-    internal class Program
+    public class MoodAnalyser
     {
+        string Message;
+
+        public MoodAnalyser()
+        {
+        }
+
+        public MoodAnalyser(string Message)
+        {
+            this.Message = Message;
+        }
+
+        public string AnalyseMood()
+        {
+            if (Message.ToLower().Contains("sad"))
+                return "SAD";
+            else return "HAPPY";
+        }
         static void Main(string[] args)
         {
-            MoodAnalysers moodAnalysers = new MoodAnalysers();
-            Console.WriteLine("Enter mood: ");
-            string mood = Console.ReadLine();
-            string message = moodAnalysers.AnalyseMood(mood);
-            Console.WriteLine("Mood is " + message);
+            
         }
     }
 }
