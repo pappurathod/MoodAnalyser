@@ -26,9 +26,7 @@ namespace MoodAnalyserSpace
 
             }
             catch (NullReferenceException)
-            { 
-                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_MOOD, "Mood should not be null"); 
-            }
+            { throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_MOOD, "Mood should not be null"); }
 
         }
         static void Main(string[] args)

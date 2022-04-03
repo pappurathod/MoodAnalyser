@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 using System.Text.RegularExpressions;
 
 namespace MoodAnalyserSpace
 {
-    public class MoodAnalyserNameFactory
+    public class MoodAnalyserFactory
     {
         public static object GetMoodAnalyserObject(string ClassName, string ConstructorName)
         {
@@ -29,5 +30,25 @@ namespace MoodAnalyserSpace
             else
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "constructor not found");
         }
+        public static object GetMoodAnalyserObjectWithParamterizedConstructor(string ClassName, string ConstructorName, string Message)
+        {
+            Type type = typeof(MoodAnalyser);
+            if (type.Name.Equals(ClassName) || type.FullName.Equals(ClassName))
+            {
+                if (type.Name.Equals(ConstructorName))
+                {
+                    ConstructorInfo ctr = type.GetConstructor(new[] { typeof(string) });
+                    object instance = ctr.Invoke(new object[] { Message });
+                    return instance;
+                }
+                else
+                {
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "constructor not found");
+                }
+            }
+            else
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS, "class not found");
+        }
     }
 }
+
