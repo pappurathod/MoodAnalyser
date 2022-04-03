@@ -62,5 +62,36 @@ namespace MoodAnalyserTest
                 Assert.AreEqual(MoodAnalyserException.ExceptionType.EMPTY_MOOD, exception.exceptionType);
             }
         }
+        public void GivenMoodAnalyserClassName_WhenProper_ShouldReturnMoodAnalyserObject()
+        {
+            object expected = new MoodAnalyser();
+            object result = MoodAnalyserFactory.GetMoodAnalyserObject("MoodAnalyserNameSpace.MoodAnalyser", "MoodAnalyser");
+            expected.Equals(result);
+        }
+
+        [Test]
+        public void GivenMoodAnalyserClassName_WhenImproper_ShouldThrowMoodAnalysisException()
+        {
+            try
+            {
+                object result = MoodAnalyserFactory.GetMoodAnalyserObject("MoodAnalyser.MoodAnalyser", "MoodAnalyser");
+            }
+            catch (MoodAnalyserException exception)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS, exception.exceptionType);
+            }
+        }
+        [Test]
+        public void GivenMoodAnalyserClassName_WhenConstructorNameIsImproper_ShouldThrowMoodAnalysisException()
+        {
+            try
+            {
+                object result = MoodAnalyserFactory.GetMoodAnalyserObject("MoodAnalyserNameSpace.MoodAnalyser", "MoodAnalys");
+            }
+            catch (MoodAnalyserException exception)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.NO_SUCH_METHOD, exception.exceptionType);
+            }
+        }
     }
 }
