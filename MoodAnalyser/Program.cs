@@ -33,6 +33,11 @@ namespace MoodAnalyserSpace
         {
             
         }
+
+        internal string mood()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
