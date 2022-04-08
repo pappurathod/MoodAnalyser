@@ -71,7 +71,6 @@ namespace MoodAnalyserSpace
             {
                 MoodAnalyser moodAnalyser = new MoodAnalyser();
                 Type type = typeof(MoodAnalyser);
-                //FieldInfo Field = type.GetField(FieldName);//, BindingFlags.Public | BindingFlags.Instance);
                 if (Message == null)
                 {
                     throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_MOOD, "Mood should not be null");
